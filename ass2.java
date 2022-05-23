@@ -18,3 +18,23 @@ public class Client {
 		}
 	}
 }
+
+
+package assignment2;
+
+import java.io.*;
+import java.net.*;
+
+public class Server {
+	public static void main(String[] args) {
+		try {
+			@SuppressWarnings("resource")
+			ServerSocket server = new ServerSocket(3001);
+			Socket s = server.accept();
+			System.out.println("Connected To Server for Message Passing from DYPCOE...");
+			DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+			dos.writeUTF(" Hi Lakhan ...Welcome	to socket");
+		} catch (Exception e) {
+		}
+	}
+}
