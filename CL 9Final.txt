@@ -1,0 +1,2579 @@
+Name: Abhishek Ghadge
+
+
+
+
+
+
+
+
+Aim and Objective:
+PRN No: 7190140 lJ
+
+
+
+
+ASSIGNMENT-la 
+Roll no: B150088544
+
+To develop  any distributed  application  through implementing client-server communication programs 
+based on Java Sockets.
+
+Tools / Environment-
+Java Programming Environment, jdk 1.8, Eclipse IDE.
+
+
+
+CODES
+Server.java
+
+package Ass1;
+
+importjava.io.IOException; importjava.io.PrintStream; importjava.net.ServerSocket; 
+importjava.net.Socket; importjava.util.Scanner;
+
+public class Server (
+public static void main(String args[]) throws IOException
+! int number, temp;
+ServerSocket s1=new ServerSocket(1342); Socket ss=s1.accept();
+Scanner sc-new Scanner(ss.getInputStream());
+number=sc.nextInt(); temp=number*2;
+PrintStreamp-newPrintStream(ss.getOutputStream()); p.println(temp);
+s1.close();
+
+
+Cli.ent.j.ava package Ass1;
+importjava.io.IOException; importjava.io.PrintStream; importjava.net.Socket;
+import java.net.UnknownHostException; importjava.util.Scanner;
+
+public class Client {
+public static void main(String args[]) throws UnknownHostException ,IOException
+
+int number,temp;
+Scanner sc =new Scanner(System.in);
+
+Name: Abhishek Ghadge          PRN No: 7190140 lJ      Roll no: B150088544
+
+
+
+
+
+Socket s =new Socket("127.0.0. 1",1342); Scanner scl -new Scanner(s.getlnputStream()); 
+System.out.println("Enter any number"); number=sc.nextInt();
+PrintStream p =new PrintStream(s.getOutputStream()); p.println (number) ,
+temp=scl.nextlnt(); System.out.println(temp); sc.close();
+s.close();
+
+
+
+
+
+
+
+
+
+
+Outputs
+
+Name: Abhishek Ghadge
+
+
+
+
+
+
+
+
+
+;            • 4 /+s1
+PRN No: 71901401J
+Roll no: B150088544
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+First select project >build automatically Then click on server program and run
+We get output
+
+
+
+//to create a program select
+i)window>perpespective/if not present select other >newperpestive>jave ii)click on file 
+>new›project›select wizard ›javaproject›project name>next>createproject>no>finish.
+iii) right click on src file>new>package>lab>finish.
+iv) right click on lab›new›class>name .server›finish; in same way create client also
+v) right click on lab>new›class>name.client>finish; when we take 126 as input instead of 127
+
+Name: Abhishek Ghadge
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CalCulator finction
+
+
+
+importjava.io.DataInputStream;
+PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.io.DataoutputStream; import java.io.IOException; import java.io.PrintWriter; import 
+java.net.ServerSocket; import java.net.Socket;
+
+public class AdditionServer {
+public static void main(String []arg) throws IOException{
+
+
+
+
+while(true){
+ServerSocket serversocket = new ServerSocket(8689);
+Socket sc =
+serverSocket.accept();
+
+
+System.out.println(”Getting Addition Request.. ');
+DataInputStream
+inFromClient = new
+DataInputSt rear(sc .getInputSt ream( ) ) ;
+int first =
+inFromClient.readInt();
+int second =
+
+Name: Abhishek Ghadge          PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""inFromClient 
+readInt(),""""""""""""""""""""""""""""""""""""""""""
+PrintWriter pr = new PrintWriter(sc.get0utputStream(),true);
+int
+answer=first+second ;
+
+DataoutputStream
+outFromClient = new
+DataoutputStream(sc.getoutputstream());
+
+
+outFromClient.writeUTF(“Answer of Addition operation is :"+answer);
+›catch(Exception e){
+e.printStackTrace();
+› .
+final1y(
+sc . c lose( ) ;
+
+serverSocket.close();
+
+
+
+catch(Exception ex){
+ex.printStackTrace();
+'
+
+}'
+
+Client.java
+import java.io.DataInputStream; import java.io.DataoutputStream; import java.io.IOException; import 
+java.net.Socket;
+import J’ava.net.UnknownHostException›’ import java.util.Scanner;
+
+public class Client {
+public static void main(String arg[]) throws UnknownHostException, IOException{
+
+trY{
+boolean isContinue =true; while(isContinue)
+(
+//Asking user for operation Selection
+System.out.println("Which operation do you want to perform ? Please enter index number: ”);
+boolean isValid =false;
+Scanner scanner = new Scanner(System.in); String selected= null;
+while(!isValid){
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+””””””””””””””””””””””””””””””””””””””””””””””””””””””””System out”.println( 
+1”Addition’),”””””””””””””””””””
+System.out.println("2. Subtraction”); System.out.println("3.
+Multiplication”);
+System.out.println(“4. Division”); int selection = scanner.nextInt(); switch(selection){
+case 1
+selected =”add"’ isVal'id-true, break;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+choice : ");
+
+
+
+
+
+
+operations
+case 2 :
+selected =”sub"’
+isValid=true’ break,.
+case 3 :
+selected -”mul“’ isValid=true; break;
+case 4 :
+selected =”div"; isValid=true; break;
+default :
+System.out.println(”Invalid
+
+isValid=false; break;
+
+
+//Asking two parameters for selected System.out.println(“Please enter two
+parameters for this operation:”);
+System.out.println(“Param 1 :"); int first = scanner.nextInt(); scanner.nextLine(); 
+System.out.println(“Param 2 :“); int second = scanner.nextInt();
+
+//Connecting with Naming Server. Socket opsocket = new
+Socket(”134.154.76.104”, 8694);
+DataoutputStream opToClient = new DataoutputStream(opSocket.getoutputstream());
+opToClient.writeInt(first); opToClient.writeInt(second); opToClient.writeUTF(selected);
+
+//Getting ans from Naming Server DataInputStream opInStream = new
+DataInputStream(opSocket.getInputStream());
+I                    String ans = opInStream.readUTF()’           I
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""//Printing 
+Answer"and"asking"for""""""""""""""""""""""""""""
+continuation
+
+
+
+continue or 0 to exit :”);
+System.out.println(ans); System.out.println(“Enter 1 if you want to
+
+int operation = scanner.nextInt(); if(operation==0)
+isContinue=false;
+
+System.out.println(“Exit performed successfully.”);
+›
+catch(Exception ex){
+ex.printStackTrace();
+'
+finally{
+//opSocket.close();
+
+
+
+
+
+
+
+Output
+Enter the equation in the form: 'operand operator operand'
+s * 6
+Answer=30
+Enter the equation in the form: 'operand operator operand'
+
+
+Answ6r=11
+Enter the equation in the form: 'operand operator operand' 9 / 3
+
+Answer=3
+
+
+Related Theory:
+
+Socket: In distributed computing, network communication is one of the essential parts of any 
+system, and the socket is the endpoint of every instance of network communication. In Java 
+communication, it is the most critical and basic object involved. A socket is a handle that a local 
+program can pass to the networking API to connect to another machine. It can be defined as the 
+terminal of a communication link through which two programs /processes/threads running  on the  
+network  can communicate with each other. The TCP layer can easily identify the application 
+location and access information through the port number assigned to the respective sockets. During 
+an instance of communication, a client program creates a socket at its end and tries to connect it 
+to the socket on the server. When the connection is made,
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+the server creates a socket at its end and then server and client communication is established.
+The java.net package provides classes to facilitate the functionalities required for networking. 
+The socket class programmed through Java using this package has the capacity of being independent 
+of the platform of execution; also, it abstracts the calls specific to the operating system on 
+which it is invoked from other Java interfaces. The ServerSocket class offers to observe connection 
+invocations, and it accepts such invocations from different clients through another socket. 
+High-level wrapper classes, such as URLConnection and URLEncoder, are more appropriate. If you want 
+to establish a connection to the Web using a URL, then these classes willuse the socket internally. 
+The following steps occur when establishing a TCP connection between two computers using sockets —
+• The server instantiates a ServerSocket object, denoting which port number communication is to 
+occur on.
+•  The server invokes the accept() method of the ServerSocket class. This method waits until a 
+client connects to the server on the given port.
+• After the server is waiting, a client instantiates a Socket object, specifying the server name 
+and the port number to connect to.
+•  The constructor of the Socket class attempts to connect the client to the specified server and 
+the port number. If communication is established, the client now has a Socket object capable of 
+communicating with the server.
+• On the server side, the accept() method returns a reference to a new socket on the server that is 
+connected to the client's socket.
+•  After the connections are established, communication can occur using I/O streams. Each socket 
+has both an OutputStream and an InputStream. The client's OutputStream is connected to the server's 
+InputStream, and the client's InputStream is connected to the server's OutputStream.
+•  TCP is a two-way communication protocol, hence data can be sent across both streams at the same 
+time. Following are the useful classes providing complete set of methods to implement sockets.
+
+
+
+
+
+Open Client {'
+
+        EonneEtion
+
+
+Server
+Session
+
+
+
+
+SOCKET API
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+
+
+
+
+In this assignment, the students learned about client-server communication through different 
+protocols and sockets. They also learned about Java support through the socket API for TCP and UDP 
+programming. Also implemented TCP is a two-way communication protocol, hence data can be sent 
+across both streams at the same time. Following are the useful classes providing complete set of 
+methods to implement socket
+
+Name: Abhishek Ghadge
+
+
+
+
+
+
+
+
+Aim and Objective:
+PRN No: 71901401J
+
+
+
+
+ASSIGNMENT-IB
+Roll no: B150088544
+
+To develop  any distributed  application  through  implementing client-server communication 
+programs based on Java RMI .
+
+Tools / Environment:
+
+Java Programming Environment, jdk 1.8, rmiregistry
+
+CODES
+
+MyServer.java
+
+import java.rmi.*;
+import java.rmi.registry.*; public class MyServer{
+public static void main(String args[]){ try{
+
+Adder stub=new AdderRemote(); Naming.rebind("rmi://1oca1host:5000/sonoo",stub);
+
+}catch(Exception e){System.out.print1n(e);}
+
+Name: Abhishek Ghadge
+
+
+
+
+
+
+MyClient.java
+
+import java.rmi.*; import java.util.*;
+
+public class MyClient{
+PRN No: 71901401J
+Roll no: B150088544
+
+public static void main(String args[])( Scanner sc=new Scanner(System.in);
+System.out.println(" ENTER THE FIRST NUMBER"); int a=sc.nextInt();
+System.out.println("ENTER THE SECOND NUMBE
+int b sc.nextInt();
+try{
+
+Adder stub (Adder)Naming.lookup("rmi://localhost:5000/sonoo"); System.out.print1n("SUM OF THE 
+NUMBERS ARE: "+stub.add(a,b));
+
+}catch(Exception e){System.out.println(e);}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AdderRemote.java
+
+import java.rmi.*; import java.rmi.server.*;
+
+public class AdderRemote extends UnicastRemoteObject implements Adder{ AdderRemote()throws 
+RemoteException{
+
+Name: Abhishek Ghadge
+
+
+
+
+
+super();
+
+
+public int add(int x,int y){return x+y;}
+PRN No: 71901401J
+Roll no: B150088544
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Adder.java
+
+import java.rmi.*;
+public interface Adder extends Remote(
+
+public int add(int x,int y)throws RemoteException;
+
+Name: Abhishek Ghadge          PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Outputs
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Theory:
+RMI provides communication between java applications that are deployed on different servers and 
+connected remotely using objects called stub and skeleton. This communication architecture makes a 
+distributed application seem like a group of objects communicating acrossa remote connection. These 
+objects  are encapsulated by exposing an interface, which h elps access the private state and 
+behavior of an object through its methods.
+RMIREGISTRY is a remote object registry, a Bootstrap naming service, that is used by RMISERVER on 
+the same host to bind remote objects to names. Clients on local and remote hosts then lookup the 
+remote objects and make remote method in vocations.
+
+Keyterminologies of RMI:
+The following are some of the important terminologies used in a Remote Method Invocation. 
+Remoteobject: This
+Is an object in as pecific JVM whose methods are exposed so they could be invoked by an other 
+program deployed on a different JVM. Remoteinterface:This is a Java interface that defines the 
+methods that existing a remote object. A remote object can implement more than one remote interface 
+to adopt multiple remote interface behaviors.
+
+Name: Abhishek Ghadge        PRN No: 71901401J     Roll no: B150088544
+
+
+
+
+RMI: This is away of invoking an object's methods with the help of a remote interface. It can be 
+carried with a syntax that is similar to the local method invocation.
+Stub: This is a Java object that acts as an entry point for the client object to route any outgoing 
+requests. It exists on the client JVM and represents the handle to the remote object.
+
+
+Conclusion:
+
+Remote Method Invocation(RMI) allows you to build Java applications that are distributed among 
+several machines.
+Remote Method Invocation(RMI) allows a Java object that Executes on one machine to invoke a method 
+of a Java object that executes on an other machine. This is an important feature, because it allows 
+you to build distributed applications.
+
+Name: Abhishek Ghadge
+
+
+
+
+
+
+
+
+
+Aim and Objective:
+PRN No: 71901401J
+
+
+
+
+
+
+ASSIGNMENT-2
+Roll no: B150088544
+
+To develop  any distributed  application  through  implementing client-server communication 
+programs based on Java RMI .
+
+Tools / Environment:
+
+JavaProgrammingEnvironment,  JDK1.8or  higher,  MPILibrary(mpi.jar) MPJExpress(mpj.jar)
+
+
+
+CODES
+
+server.java
+
+package As2; import java.io.*; import java.net.*;
+
+publicclass server {
+publicstaticvoid main(String[] args) { try
+
+@SuppressWarnings(”resource")
+ServerSocket server = new ServerSocket(3001); Socket s = server.accept(); 
+System.out.println(“Connected To Server for Message
+Passing from DYPCOE...”);
+DataoutputStream dos = new DataOutputStream(s.get0utputStream());
+dos.writeUTF(” Hi Ankur ...Welcome to socket“);
+} catch (Exception e) {
+
+
+
+
+client.java
+
+package As2;
+import java.io.DataInput; import java.io.DataInputStream; import java.net.Socket;
+
+publicclass client {
+
+publicstaticvoid main(String[] args) { try
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+@SuppressWarnings(”resource“)
+Socket s = new Socket(”127.0.0.1”, 3001);
+DataInput dis = new DataInputStream(s.getInputStream()); String msg = dis.readUTF();
+System.out.println(msg);
+} catch (Exception e)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Using Eclipse :
+
+Name: Abhishek Ghadge          PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Using JAVA CMD:
+
+Name: Abhishek Ghadge        PRN No: 71901401J     Roll no: B150088544
+
+
+
+
+
+
+
+
+Message passing is a popularly ren owned mechanism to implement parallel is min applications; it is 
+also called MPI. The MPI interface for Java has a technique for identifying the user and helping in 
+lower startup overhead. It also helps in collective communication and could be executed on both 
+shared memory and distributed systems. MPJ is a familiar Java API for MPI implementation. Mpi Java 
+is the near flexible Java binding for MPJ standards.
+Currently developers can produce more efficient and effective parallel applications using message 
+passing.
+Abasic prerequisite for message passing is a good communication API. Java comes with various 
+readymade packages for communication, notably an interface to BSD sockets, and the Remote  Method 
+Invocation(RMI) mechanism. The parallel computing world is mainly concerned with
+’symmetric' communication, occurring in group so interacting peers. This symmetric model of 
+communication is captured in the successful Message Passing Interface standard(MPI).
+Message-PassingInterface Basics:
+Every MPI program must contain the preprocessor directive:
+#include<mpi.h>
+The mpi . h file contains the definitions and declarations necessary for compiling an MPI program.
+
+MPI_Inifi initializes the execution environment for MPI. It is a “sharenothing” modality in which 
+the outcome of any one of thec oncurrent processes can in no way be influenced by the intermediate 
+results of any of the other processes. Command has to be called before any other MPI call is made, 
+and it is an error to call it more than a single time within the program. MPI Finalize cleans up 
+all the extra neousmess that was first put into place by MPI In1l.
+Multiple Data (SPMD). The multicore configuration is meant for users who plan to
+write and execute parallel Java applications using MPJ Express on their desktops or laptops which 
+contains shared memory and multicore processors. In this configuration, users can write their 
+message passing parallel application using MPJ Express and it will be ported automatically on 
+multicore processors. We except that users can first develop applications on their laptops and 
+desktops using multicore conflguration, and then take the same code to dlStFlbuted memory platforms
+
+Name: Abhishek Ghadge          PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+
+There has been a large amount of interest in parallel programming using Java.mpj is an MPI binding 
+with Java along with the support for multicore architecture so that user can develop the code on 
+it's own laptop or desktop. This is an effort to develop and run parallel programs according to MPI 
+standard.
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+ASSIGNMENT NO. 3
+
+
+Problem Statement: To develop any distributed application with CORBA program using JAVA IDL.
+
+Tools / Environment:
+Java Programming Environment, JDK 1.8
+
+OUTPUT
+
+Name: Abhishek Ghadge
+PRN No: 71901401J
+Roll no: B150088544
+
+
+
+
+
+
+
+RelatedTheory:
+Common Object Request Broker Architecture (CORBA):
+
+CORBA is an acronym for Common Object Request Broker Architecture. It is an open source,  
+vendor-independent architecture  and infrastructure developed  by the  Object Management  Group 
+(OMG) to integrate enterprise applications across a distributed network. CORBA specifications 
+provide guidelines for such integration applications, based on the way they want to interact, 
+irrespective of the technology; hence, all kinds of technologies can implement these standards 
+using their own technical implementations.
+
+When two applications/systems in a distributed environment interact with each other, there are 
+quite a few unknowns between those applications/systems, including the technology they are  
+developed in (such as Java/ PHP/ .NET), the base operating system they are running on (such as 
+Windows/Linux), or system configuration (such as memory allocation). They communicate mostly with 
+the help of each other's network address or through a naming service. Due to this, these 
+applications end up with quite a few issues in integration, including content (message) mapping 
+mismatches.
+An application developed based on CORBA standards with standard Internet Inter-ORB Protocol (IIOP), 
+irrespective of the vendor that develops it, should be able to smoothly integrate  and operate with 
+another application developed based on CORBA standards through the same or different vendor.
+Except legacy applications, most of the applications follow common standards when it comes to 
+object modeling, for example. All applications related to, say, "HR&Benefits" maintain an object 
+model with details of the organization, employees with demographic information, benefits, payroll, 
+and deductions. They are only different in the way they handle the details, based on the country 
+and region they are operating for. For each object type, similar to the HR&Benefits  systems, we 
+can define an interface using the Interface Definition Language (OMG IDL).
+The contract between these applications is defined in terms of an interface for the server objects 
+that the clients can call. This IDL interface is used by each client to indicate when they should 
+call any particular method to marshal (read and send the arguments).
+The target object is going to use the same interface definition when it receives the request from 
+the client to unmarshal (read the arguments) in order to execute the method that was requested by 
+the client operation. Again, during response handling, the interface definition is helpful to 
+marshal (send from the server) and unmarshal (receive and read the response) arguments on the 
+client side once received.
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+The IDL interface is a design concept that works with multiple programming languages including C, 
+C++, Java, Ruby, Python, and IDLscript. This is close to writing a program to an interface, a 
+concept we have been discussing that most recent programming languages and frameworks, such as 
+Spring. The interface has to be defined clearly for each object. The systems encapsulate the actual 
+implementation along with their respective data handling and processing, and only the methods are 
+available to the rest of the world through the interface. Hence, the clients are forced to develop 
+their invocation logic for the IDL interface exposed by the application they want to connect to 
+with the method parameters (input and output) advised by the interface operation.
+
+The following diagram shows a single-process ORB CORBA architecture with the IDL configured as 
+client stubs with object skeletons, The objects are written (on the right) and a client for it (on 
+the left), as represented in the diagram. The client and server use stubs and skeletons as proxies, 
+respectively. The IDL interface follows a strict definition, and even though the client and server 
+are implemented in different technologies, they should integrate smoothly with the interface 
+definition strictly implemented.
+
+
+
+
+
+
+
+
+
+
+
+
+Obiect Adapter
+
+
+Object Request Broker Eore ( ORB IIOP Protocol)
+
+
+
+
+
+
+
+
+
+
+In CORBA, each object instance acquires an object reference for itself with the electronic token 
+identifier. Client invocations are going to use these object references that have the ability to 
+figure out which ORB instance they are supposed to interact with. The stub and skeleton represent 
+the client and server, respectively, to their counterparts. They help establish this communication 
+through ORB and pass the arguments to the right method and its instance during the invocation.
+
+Name: Abhishek Ghadge        PRN No: 71901401J     Roll no: B150088544
+
+
+
+
+Inter-ORB communication
+The  following  diagram  shows  how  remote  invocation  works  for  inter-ORB communication. It 
+shows that the clients that interacted have created IDL Stub and IDL Skeleton based on Object 
+Request Broker and communicated through IIOP Protocol.
+
+
+
+
+
+
+
+
+IDL
+Stub                         Stuls
+
+I DL
+ñkeletcn
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To invoke the remote object instance, the client can get its object reference using a naming 
+service. Replacing the object reference with the remote object reference, the client can make the 
+invocation of the remote method with the same syntax as the local object method invocation. ORB 
+keeps the responsibility of recognizing the remote object reference based on the client object 
+invocation through a naming service and routes it accordingly.
+
+Java Support for CORBA
+CORBA complements the JavaT^ platform by providing a distributed object framework, services to 
+support that framework, and interoperability with other languages. The Java platform complements 
+CORBA by providing a portable, highly productive implementation environment, and a very robust 
+platform. By combining the Java platform with CORBA and other key enterprise technologies, the Java 
+Platform is the ultimate platform for distributed technology solutions.
+
+CORBA standards provide the proven, interoperable infrastructure to the Java platform. IIOP 
+(Internet Inter-ORB Protocol) manages the communication between the object components that power 
+the system. The Java platform provides a portable object infrastructure that works on every major 
+operating system. CORBA provides the network transparency, Java provides the implementation 
+transparency. An Object Request Brother (OPB) is part of the Java Platform.
+The ORB is a runtime component that can be used for distributed computing using IIOP communication. 
+Java IDL is a Java API for interoperability and integration with CORBA. Java IDL included both a 
+Java-based ORB, which supported IIOP, and the IDL-to-Java
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+compiler, for generating client-side stubs and server-side code skeletons. J2SE v.1.4 includes an 
+Object Request Broker Daemon (ORBD), which is used to enable clients to transparently locate and 
+invoke persistent objects on servers in the CORBA environment.
+
+When using the IDL programming model, the interface is everything! It defines the points of entry 
+that can be called from a remote process, such as the types of arguments the called procedure will 
+accept, or the value/output parameter of information returned. Using IDL, the programmer can make 
+the entry points and data types that pass between communicating processes act like a standard 
+language.
+
+CORBA is a language-neutral system in which the argument values or return values are limited to 
+what can be represented in the involved implementation languages. In CORBA, object orientation is 
+limited only to objects that can be passed by reference (the object code itself cannot be passed 
+from machine-to-machine) or are predefined in the overall framework. Passed and returned types must 
+be those declared in the interface.
+
+With RMI, the interface and the implementation language are described in the same language, so you 
+don't have to worry about mapping from one to the other. Language-level objects (the code itself) 
+can be passed from one process to the next. Values can be returned by their actual type, not the 
+declared type. Or, you can compile the interfaces to generate IIOP stubs and skeletons which allow 
+your objects to be accessible from other CORBA- compliant languages.
+
+The IDL Programming Model:
+The IDL programming model, known as Java*^ IDL, consists of both the Java CORBA ORB and the i dl  j 
+compiler that maps the IDL to Java bindings that use the Java CORBA ORB, as well as a set of APIs, 
+which can be explored by selecting the orq . org prefix from the Package section of the API index.
+
+Java IDL adds CORBA (Common Object Request Broker Architecture) capability to the Java  platform,  
+providing  standards-based  interoperability and  connectivity.  Runtime components include a Java 
+ORB for distributed computing using IIOP communication.
+
+To use the IDL programming model, define remote interfaces using OMG Interface Definition Language 
+(IDL), then compile the interfaces using cdl j compiler. When you run the idl 3 compiler over your 
+interface definition file, it generates the Java version of the interface, as well as the class 
+code files for the stubs and skeletons that enable applications to hook into the ORB.
+
+Portable Object Adapter (POA) : An object adapter is the mechanism that connects a request using an 
+object reference with the proper code to service that request. The Portable Object Adapter, or POA, 
+is a particular type of object adapter that is defined by the CORBA specification. The POA is 
+designed to meet the following goals:
+
+•  Allow programmers to construct object implementations that are portable between different ORB 
+products.
+•  Provide support for objects with persistent identities.
+
+Name: Abhishek Ghadge
+PRN No: 71901401J     Roll no: B150088544
+
+
+
+
+
+
+
+Designing the solution:
+
+Here the design of how to create a complete CORBA (Common Object Request Broker Architecture) 
+application using IDL (Interface Definition Language) to define interfaces and Java IDL compiler to 
+generate stubs and skeletons. You can also create CORBA application by defining the interfaces in 
+the Java programming language.
+
+The server-side implementation generated by the idl j  compiler is the Portable Servant Inheritance 
+Model, also known as the POA(Portab1e  Object Adapter) model. This document presents a sample 
+application created using the default behavior of the idl 3 compiler, which uses a POA server-side 
+model.
+
+1. Creating CORBA Objects using Java IDL:
+1.1. In order to distribute a Java object over the network using CORBA, one has to define it's own 
+CORBA-enabled interface and it implementation. This involves doing the following:
+•  Writing an interface in the CORBA Interface Definition Language
+•  Generating a Java base interface, plus a Java stub and skeleton class, using an IDL-to- Java 
+compiler
+•  Writing a server-side implementation of the Java interface in
+Java Interfaces in IDL are declared much like interfaces in Java.
+
+1.2. Modules
+
+Modules are declared in IDL using the module keyword, followed by a name for the module and an 
+opening brace that starts the module scope. Everything defined within the scope of this module 
+(interfaces, constants, other modules) falls within the module and is referenced in other IDL 
+modules using the syntax modulename::x. e.g.
+
+// IDL module
+
+module corba (
+interface NeatExample
+
+
+’
+1.3. Interfaces
+
+The declaration of an interface includes an interface header and an interface body. The header 
+specifies the name of the interface and the interfaces it inherits from (if any). Here is an IDL 
+interface header:
+interface PrintServer : Server { ...
+
+This header starts the declaration of an interface called Print Server that inherits all the 
+methods and data members from the Server interface.
+
+Name: Abhishek Ghadge
+
+
+
+
+
+
+1.4 Data members and methods
+PRN No: 71901401J     Roll no: B150088544
+
+The interface body declares all the data members (or attributes) and methods of an
+
+interface. Data members are declared using the alfri the declaration includes a name and a type.
+ibuLe keyword. At a minimum,
+
+readonly attribute string mystring;
+The method can be declared by specifying its name, return type, and parameters, at a minimum.
+
+string parseString(in string buffer);
+
+
+This declares a method called par se S Ir  inq ( ) that accepts a single s Mr inq  argument and 
+returns a s I ring value.
+
+1.5 A complete IDL example
+
+Now let's tie all these basic elements together. Here's a complete IDL example that declares a 
+module within another module, which itself contains several interfaces:
+
+module OS
+module services { interface Server (
+readonly attribute string serverName; boolean init(in string sName):
+
+i’nterface Printable
+boolean print(in string header);
+
+’
+interface PrintServer : Server {
+boolean printThis(in Printable p);
+ii
+ii
+‘
+The first interface, Server, has a single read-only s Ir  inq  attribute and an init ( ) method 
+that accepts a s Ir  i riq  and returns a boo lean. The Pr  i n I ab le  interface has a  single  
+pr  i nfi ( ) method  that  accepts  a string header.  Finally,  the Pr i n I Se rver interface 
+extends  the Server interface and adds a pr i n fi Th i s ( ) method that accepts a Pr i n L ab l e 
+ object and  returns a boolean. In all cases, we've declared the method arguments as input-only 
+(i.e., pass- by-value), using the in keyword.
+
+Name: Abhishek Ghadge        PRN No: 71901401J     Roll no: B150088544
+
+
+
+
+
+
+2. Turning IDL Into Java
+
+Once the remote interfaces in IDL are described, you need to generate Java classes that act as a 
+starting point for implementing those remote interfaces in Java using an IDL-to- Java compiler. 
+Every standard IDL-to-Java compiler generates the following 3 Java classes from an IDL interface:
+
+•  A Java interface with the same name as the IDL interface. This can act as the basis for a Java 
+implementation of the interface (but you have to write it, since IDL doesn't provide any details 
+about method implementations).
+•  A helper class whose name is the name of the IDL interface with "Helper" appended to it (e.g., 
+Se rverHe lper). The primary purpose of this class is to provide a static
+narrow ( ) method that can safely cast CORBA Obj e et references to the Java interface
+type. The helper class also provides other useful static methods, such as read ( ) and  wri be ( )  
+methods that allow you to read and write an object of the corresponding type using I/O streams.
+•  A holder class whose name is the name of the IDL interface with "Holder" appended to it (e.g., 
+Serve rHo l der). This class is used when objects with this interface are used as
+out or i noun arguments in remote CORBA methods. Instead of being passed directly
+into the remote method, the object is wrapped with its holder before being passed. When a
+remote method has parameters that are declared as out or in out, the method has to be able to 
+update the argument it is passed and return the updated value. The only way to guarantee this, even 
+for primitive Java data types, is to force oufi and i noun arguments to be wrapped in Java holder 
+classes, which are filled with the output value of the argument when the method returns.
+
+The idl toj tool generate 2 other classes:
+
+•  A  client  stud  class,  called  interface-nameStub, that  acts  as  a  client-side 
+implementation of the interface and knows how to convert method requests into ORB requests that are 
+forwarded to the actual remote object. The stub class for an interface named Server is called  
+Server SSub.
+•  A server skeleton class, called  interface-oameIrnpl Base, that is a base class for a  
+server-side  implementation of the  interface.  The base  class  can  accept requests for the 
+object from the ORB and channel return values back through the ORB to the remote client.  The 
+skeleton class for an interface named Server is called
+ServerImplBase.
+
+So, in addition to generating a Java mapping of the IDL interface and some helper classes for the 
+Java interface, the idltoj compiler also creates subclasses that act as an interface between a 
+CORBA client and the ORB and between the server-side implementation and the ORB.
+
+This creates the five Java classes: a Java version of the interface, a helper class, a holder 
+class, a client stub, and a server.
+
+Name: Abhishek Ghadge        PRN No: 71901401J     Roll no: B150088544
+
+
+3. Writing the Implementation
+The IDL interface is written and generated the Java interface and support classes for it, including 
+ the  client  stub  and  the  server  skeleton.  Now,  concrete  server-side implementations of all 
+of the methods on the interface needs to be created.
+
+Implementing the solution:
+Here, we are demonstrating the "Hello World" Example. To create this
+
+pie, create a
+directory named hello/ where you develop sample applications and create the files in this 
+directory.
+1. Defining the Interface (Hello . ids)
+The first step to creating a CORBA application is to specify all of your objects and their 
+interfaces using the OMG's Interface Definition Language (IDL).To complete the application,  you 
+simply provide the server  (HelloServer. java)  and  client (He11oC1 ienfi . java) implementations.
+
+2. Implementing the Server (HelloSezver . java)
+The example server consists of two classes, the servant and the server. The servant, He11 o I rnp l 
+,  is the implementation of the  He11 o  IDL interface; each  He11 o instance is implemented by a 
+He11 o I rnp  instance. The servant is a subclass of He11 o POA, which is generated by the i d1 j 
+compiler from the example IDL. The servant contains one method for each IDL operation, in this 
+example, the s ayHe11 o ( ) and s hut down ( ) methods. Servant methods are just like ordinary Java 
+methods; the extra code to deal with the ORB, with marshaling arguments and results, and so on, is 
+provided by the skeleton.
+
+The He11 oServer class has the server's rna i n ( ) method, which:
+
+•  Creates and initializes an ORB instance
+•  Gets a reference to the root POA and activates the POAManaqer
+•  Creates a servant instance (the implementation of one CORBA He11 o object) and tells the ORB 
+about it
+•  Gets a CORBA object reference for a naming context in which to register the new CORBA object
+•  Gets the root naming context
+•  Registers the new object in the naming context under the name "Hello"
+•  Waits for invocations of the new object from the client.
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+3. Implementing the Client Application (HelloClient.java)
+The example application client that follows:
+
+•  Creates and initializes an ORB
+•  Obtains a reference to the root naming context
+•  Looks up "Hello" in the naming context and receives a reference to that CORBA object
+•  Invokes the object's sayHello() and shutdown() operations and prints the result.
+
+      Writing        the        source       code:                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Coordinators KDB /NKR                                           Page 31
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+BE Lab- CL_IX | D.Y. Patil College of Engineering
+
+
+
+
+
+
+
+
+
+
+Rever seZnpt( )
+
+
+
+
+
+
+
+return ((
+
+Name: Abhishek Ghadge        PRN No: 71901401J     Roll no: B150088544
+
+
+
+
+
+
+
+
+Building and Executing the solution:
+
+The Hello World program lets you learn and experiment with all the tasks required to develop almost 
+any CORBA program that uses static invocation, which uses a client stub for the invocation and a 
+server skeleton for the service being invoked and is used when the interface of the object is known 
+at compile time.
+This example requires a naming service, which is a CORBA service that allows CORBA objects to be 
+named by means of binding a name to an object reference. The name binding may be stored in the 
+naming service, and a client may supply the name to obtain the desired object reference. The two 
+options for Naming Services with Java include orbd, a daemon process containing a Bootstrap 
+Service, a Transient Naming Service,
+To run this client-server application on the development machine:
+
+1. Change to the directory that contains the file He11 o . i dl.
+2. Run the IDL-to-Java compiler, idl j , on the IDL file to create stubs and skeletons. This step 
+assumes that you have included the path to the j ava /bi n directory in your path.
+
+idlj -fall Hello.idl
+
+You must use the — fa 11  option with the idl j compiler to generate both client and server- side 
+bindings. This command line will generate the default server-side bindings, which assumes the POA 
+Inheritance server-side model.
+
+The files generated by thei d1 j compiler for He11 o . id1, with the — fa 11  command line option, 
+are:
+
+o HelloPOA.java:
+This abstract class is the stream-based server skeleton, providing basic CORBA functionality for 
+the server. It extends orq . omq . Por  I ab 1 eSe rver  . Se rvanfi, and  implements the I nvo 
+keHandler  interface and the He11 oope rat i ons interface.
+
+The    server    class
+HelloPOA.
+HelloImpl  extends
+
+o HelloStub.java:
+This class is the client stub, providing CORBA functionality for the client. It extends org . omq . 
+CORBA . po rtabl e.Obj ecu Irnp l and implements the
+He11 o . j ava interface.
+
+o Hello.java:
+This  interface  contains  the  Java  version  of  IDL  interface  written.  The He11 o . j ava  
+interface extends o rq . omq . CORBA . Obj e ct,  providing standard CORBA object functionality. It 
+also extends the He11 ooper at i ons  interface and o rq . omq . CORBA . por I ab le . IDLE n I 
+ifiy.
+
+Name: Abhishek Ghadge        PRN No: 71901401J     Roll no: B150088544
+
+
+
+
+
+
+
+o Hel1oHelper.java
+This class provides auxiliary functionality, notably the nar row ( ) method required to  cast CORBA 
+object references to their proper types. The Helper class is responsible for reading and writing 
+the data type to CORBA streams, and inserting and extracting the data type from AnyS. The Holder 
+class delegates to the methods in the
+Helper      class      for      reading       and      writing.
+
+HelloHolder.java
+This final class holds a public instance member of type He11 o. Whenever the IDL type is an out  or 
+an i nou L parameter, the Holder class is used. It provides operations
+fororg.omg.CORBA.portable.OutputStreamand org.omg.CORBA.port able.InputStream  guments,whichCORBA 
+allows, but which do not map easily to Java's semantics. The Holder class delegates to the methods 
+in the Helper class for reading and writing. It implements org.omg.CORBA.portable.Streamable.
+
+o HelloOperations.java
+
+This interface contains the methods s ayHe11 o ( ) and s hut down ( ) . The IDL-to- Java mapping 
+puts all of the operations defined on the IDL interface into this file, which is shared by both the 
+stubs and skeletons.
+
+
+Compile the .java files, including the stubs and skeletons (which are in the directory directory 
+He11 oApp). This step assumes the j ava /b in directory is included in your path.
+
+javac *.java HelloApp/*.java
+
+4. Start orbd .
+
+To start o rbd from a UNIX command shell, enter:orbd —ORBInitialPort 1050&
+Note that 1 0 50 is the port on which you want the name server to run. The — ORB I n i Li a l Po rd 
+argument is a required command-line argument.
+
+5. Start the He11 ose rve r:
+
+To start the He11 oSe rver  from a UNIX command shell, enter:
+
+java HelloServer -ORBInitialPort 1050 - ORBInitialHost localhost&
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+
+
+
+
+You will see He11 oSe rve r  ready and waitin  when the server is started.
+
+6. Run the client application:
+
+java HelloClient -ORBInitialPort 1050 - ORBInitialHost localhost
+
+When the client is running, you will see a response such as the followingon yourtennina:Obtained  
+handle  server object:  IOR:  (binary  code) Hello  World! HelloServer exiting...
+
+After completion     name server (orbd).
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+
+
+
+
+CORBA  provides the network transparency, Java  provides the implementation transparency. CORBA 
+complements the Java*^ platform by providing a distributed object framework, services to support 
+that framework, and interoperability with other languages. The Java platform complements CORBA by 
+providing a portable, highly productive implementation environment. The combination of Java and 
+CORBA allows you to build more scalable and more capable applications than can be built using the 
+JDK alone.
+
+Name: Abhishek Ghadge        PRN No: 71901401J     Roll no: B150088544
+
+
+
+ASSIGNMENT-4
+
+Aim and Objective: To develop Token Ring distributed algorithm for leader election
+Tools / Environment: Java Programming Environment, JDK 1.8, Ec1ipseNeon(EE).
+
+CODES
+package As4;
+
+lmport java.io.*;
+import java.util.Scanner;
+
+publicclass bully {
+staticinto '
+staticintpro[] = newint[100];
+staticints/a[] = newint[100]; staticintco;
+
+publicstaticvoid main(String args[]) throws IOException ( System.out.println("Enter the number of 
+process"); ñSuppressWarnings("resource")
+Scanner in = new Scanner(System.iii); n = in.nextInt();
+
+inti;
+
+for (i = 0; its; i++) (
+System.oitf.print1n("For process " + (i + 1) + ":"); System.oitf.print1n("Status:");
+sta[i] = in.nextInt(); System.out.print1n("Priority"); pro[i] = in.nextInt();
+
+System.out.pri.nt1n("Wh.ich process will i.niti.ate electi.on?"); intele = in.nextInt();
+
+elect(ele);
+System.out.print1n("Final coordinator is "  co),
+
+
+staticvo dq ele in ele) {
+
+co = ele + 1,
+
+Name: Abhishek Ghadge          PRN No: 71901401J      Roll no: B150088544
+
+
+for (inti = 0; i<s,‘ 1++) (
+if Pro[ele] +pro[i]) {
+System.owl.println("Election message is sent from " +
+(ele + 1) + " to " + (1 1));
+if(eta[i]
+
+
+
+
+
+
+
+
+
+Outputs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related Theory:
+
+Election Algorithm:
+1. Many distributed algorithms require a process to act as a coordinator.
+2. The coordinator can be any process that organizes actions of other processes.
+3. A coordinator may fail.
+4. How is a new coordinator chosen or elected?
+
+Assumptions:
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+
+There are two types of Distributed Algorithms:
+1. Bully Algorithm
+2. Ring Algorithm BullyAlgorithm:
+A. When a process, P, notices that the coordinator is
+no longer responding to requests, itinitiates an
+election.
+1. P sends an ELECTION message to all processes with higher numbers.
+2. If no one responds, P wins the election and becomes a coordinator.
+3. If one of the higher-ups answers, it takes over. P's job is done.
+B. When a process gets an ELECTION message from one of its lower-numbered colleagues:
+1. Receivers ends an OK message back to the sender to indicate that he is a live and will take 
+over.
+2. Eventually, all processes giveup apart of one, and that one is the new coordinator.
+3. The new coordinator announce sits victory by sending all processesa CO-  ORDINATOR message 
+telling them that it is the new coordinator.
+C. If a process that was previously down comes back:
+1. It holds an election.
+If it happens to be the highest process currently running, it will win the election and takeover 
+the coordinators job.
+
+Conclusion:
+
+Election algorithms are designed to choose a coordinator. We have two election algorithms for two 
+different configurations of distributed system. The Bully algorithm applies to system where every 
+process can send a message to every other process in the system and The Ring algorithm m applies to 
+systems organized as a ring (logically or physically). In this algorithm we assume that the link 
+between the process are unidirectional and every process can message to the process on its right 
+only.
+
+Name: Abhishek Ghadge
+
+
+
+
+
+
+
+Aim and Objective:
+PRN No: 71901401J
+
+
+
+
+ASSIGNMENT-5
+Roll no: B150088544
+
+To create a simple web service and write any distributed application to consume the web service.
+
+Tools/Environment:
+
+Java Programming Environment, JDK8, EcIipseIDE with Tomcat Server
+
+
+
+
+
+
+
+publicclassCalculator{
+publicint add(inta,int b)
+‹
+returna+b;
+. .    .  .
+publicint sub(inta,int b)
+
+returna-b;
+
+
+publicint mult(inta,int b) returna+b;
+
+publicint div(inta,int b)
+I
+returna+b;
+
+Name: Abhishek Ghadge          PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+
+
+Outputs
+
+Name: Abhishek Ghadge          PRN No: 71901401J      Roll no: B150088544
+
+Name: Abhishek Ghadge          PRN No: 71901401J      Roll no: B150088544
+
+Name: Abhishek Ghadge          PRN No: 71901401J      Roll no: B150088544
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+
+*"""""""""*3t""*Namethej*spa*s*res*u tj*s*p  andSelectFinl  
+h.""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""*
+
+Add the following code to jsp. 
+result.jspsoIid<%@pageimport"java.net.URL,javax.xml.namespace.QName,jav ax.xml.ws.Service,org
+.apache.geronimo.samples.jws.CaIcuIator"%><htmlxmlns="http://www.w3.or g/1999/xhtmI"xmI:Iang="en"> 
+<head>
+
+<titIe> Calculator Result
+</titIe>
+
+</head >
+
+<%intvaIue1=0;intvaIue2=0;intsum=
+0;try(System.out.printIn(request.getParameter(  "vaIue1")
++""+request.getParameter("vaIue2"));vaIue1=Integer.parseInt( request.getParameter( 
+"vaIue1"));vaIue2=Integer.parseInt(request.getParameter("vaIue2"));URLurI=n 
+ewURL("http://localhost:8080/jaxws-caIcuIator- 
+1.0/caIcuIator?wsdI");QNameqname=newQName("http://jws.samples.geroni 
+mo.apache.org","CaIcuIator");Serviceservice=Service.create(urI,qname);Calcul atorcalc
+=(CaIcuIator)service.getPort(Calculator.cIass);sum=caIc.add(vaIue1,vaIue2);}ca
+tch(Exceptione)(e.printStackTrace();)%>
+
+<body>TheresuItis:<%=vaIue1%> + <%=value2%>= <%=sum%> <br> <ahref
+="index.jsp">Back</a> </body> </htmI>Thisfinishes thedevelopmentofWeb client.
+
+ExpandWEB-INF/web.xmIandaddthefoIIowingcodeweb.xmlsolid
+
+<?xmlversion="J.0"encoding="UTF-8"?>
+
+<web-appxmIns:caIc="urn:geronimo-sampIes- 
+jws"xmIns="http://java.sun.com/xml/ns/javaee"version="2.5">
+
+<servIet>
+
+<dispIay-
+
+name>CalculatorService
+
+</display-name>
+
+Name: Abhishek Ghadge
+
+
+
+
+<servIet-
+
+name> CalculatorService
+
+</servlet-name>
+
+<servIet-
+PRN No: 71901401J
+Roll no: B150088544
+
+cIass>org.apache.geronimo.samples.jws.CalculatorService
+
+</servlet-cIass>
+
+</servIet>
+
+<servlet-mapping >
+
+<servIet- name>CaIcuIatorService
+</servlet-name>
+
+<urI-pattern>
+
+/caIcuIator
+
+</url-pattern>
+
+</servlet-mapping >
+
+<service-ref>
+
+<service-ref-
+
+name> services/Calculators/service- ref- name>
+<service-interface>javax.xml.ws.Services/service-interface>
+
+<wsdI-fiIe>WEB-INF/CaIcuIatorService.wsdI</wsdl-file> </service-ref>
+</web-app>
+
+1.  Similarlydoubleclickgeronimo-web.xmlandaddthefollowing 
+code.geronimo-web.xmlsolid<?xmlversion="1.0"encoding="UTF- 8"?>
+<web-app  xmIns="http://geronimo.apache.org/xml/ns/j2ee/web-1.1">
+
+Name: Abhishek Ghadge
+
+
+
+
+
+
+Run On Server
+Definea New Server
+Choose the type of sei 'ei to ci eate
+PRN No: 71901401J
+Roll no: B150088544
+
+
+Ho'.x' do ‘you '‹'ant to select the server*
+•}' Choose an existing server
+I”?' Manually define a ne'.' server
+Select the server that ,'ou ' 'ant to use: t,'pe filter text
+— ' localhost
+j Apache Geronimo v2. 1 Server at localhost
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Apache Geronimo v2.1 supports 3ava EE 5.0.
+
+
+Al' 'ays use this server ' 'hen i unning this pi oject
+
+
+
+
+Next       i h   me C
+
+Name: Abhishek Ghadge
+PRN No: 71901401J
+Roll no: B150088544
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+packagecom.webServices;
+
+publicclassCalculator {
+publicintadd(inta,intb){return(a*b)
+
+
+publicintsubtract(inta,intb){return (a—b);
+
+publicintmultiply(inta,intb){return
+(a*b);
+
+
+publicintdivide(inta,intb){return(a
+/b);
+
+Name: Abhishek Ghadge
+
+
+
+
+
+
+1 package calculator;
+4 1oport java. ut11. Scanner;
+
+4 public class Program {
+PRN No: 71901401J
+Roll no: B150088544
+
+pub11c stat1c vold oa1n(String[ ] args) (
+char operator;
+double num1, num2j
+Scanner 1nput = neu Scanner(Systea.In);
+
+System.o*t.println(”Enter the Operator ( +, -, •, / )”);
+operator = input.next().charAt(8);
+
+14   System.out.println(”Enter the two numbers one by one”); numl = input.nextDouble();
+num2 = input.nextDouble();
+
+
+
+
+
+
+switch( operator
+case
+
+
+
+24
+25     case
+System.out.printf(”8.2f + %.2f = %.2f”, num1,num2,(numl+num2));
+brenk;
+
+System.owt.printf(”%.2f - %.2f = %.2f”, numl,num2,(numb-num2));
+break;
+
+System.out.prints(”%.2f ’ %,2T = %.2f”, numl,num2,(numI^rium2)); break,
+
+34
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter• t:he tzao n  be s or›e by one
+ie 3e
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+
+WebService:
+
+A web service can be defined as a collection of open protocols and standards for exchanging 
+information among systems or applications.
+
+A service can be treated as a web service if:
+•  The service is discoverable through a simple lookup
+•  It uses a standard XML format for messaging
+•  It is available across internet/intranet networks.
+•  It is a self-describing service through a simple XML syntax
+•  The service is open to, and not tied to, any operating system/programming language
+
+
+Types ofWebServices:
+
+There are two types of web services:
+
+1.  SOAP: SOAP stands for Simple Object Access Protocol. SOAP is an XML based industry standard 
+protocol for designing and developing web services. Since it's XML based, it's platform and 
+language independent. So, our server can be based on JAVA and client can be on .NET, PHP etc. and 
+vice- versa.
+
+2. REST: REST(Representational State Transfer) is an architectural style for developing web 
+services. It's getting popularity recently because it has small learning curve when compared to 
+SOAP. Resources are core concepts of Restful web services and they are uniquely identified by their 
+URIs.
+
+Web service architectures:
+
+As part of a web service architecture, there exist three major roles.
+
+Service Provider is the program that implements the service agreed for the web service and exposes 
+the service over the internet/intranet for other applications to interact with.
+Service Requestor is the program that interacts with the webservice exposed by the Service 
+Provider. It
+Makes an invocation to the web service over the network to the Service Provider and exchanges 
+information.
+
+
+ServiceRegistryacts asthedirectorytostore referencestothe web services
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+The following are the steps involved in abasic SOAP web service operational behavior:
+1. The client program that wants to interact with another application prepares its request content 
+as a SOAP message.
+2. Then, the client programs ends this SOAP message to the server web service as an HTTP POST 
+request with the content passed as the body of the request.
+3. The web service plays a crucial role in this step by understanding the SOAP request and 
+converting it into a set of instructions that the server program can understand.
+4. The server program processes the request content as programmed and prepares the output as the 
+response to the SOAP request.
+s. Then, the web service takes this response content as a SOAP message and reverts to the SOAP HTTP 
+request invoked by the client program with this response.
+6. The client program web service reads the SOAP response message to receive the outcome of the 
+server program for the request content it sent as a request.
+
+
+SOAP web services:
+
+SimpleObject Access Protocol(SOAP) is an XML- based protocol for accessing web services. It is a 
+W3C recommendation for communication
+between two applications, and it is a platform-and
+language- independent technology in integrated distributed applications.
+While XML and HTTP to gether make the basic platform for webservices, the following are the key 
+components of standard SOAP web services:
+
+Universal Description, Discovery, and Integration(UDDI):UDDI is an XML based frame work for 
+describing, discovering ,and integrating web services. It acts as a directory of web service 
+interfaces described in the WSDL language.
+
+Web Services Description Language(WSDL):
+WSDL is an XML document containing information about web services, such as the method name, method 
+parameters, and how to invoke the service. WSDL is part of the UDDI registry. It acts as an 
+interface between applications that want to interact based on web services.
+
+
+Conclusion:
+This assignment, described the Web services approach to the Service Oriented Architecture concept. 
+Also, described the Java APIs for programming Web services and demonstrated examples of their use 
+by providing detailed step-by- step examples of how to program Web services in Java.
+
+Name: Abhishek Ghadge
+PRN No: 71901401J
+
+
+
+
+ASSIGNMENT NO. 6
+Roll no: B150088544
+
+
+Aim/objective:
+To develop any distributed application using Messaging System in Publisher-Subscriber paradigm.
+
+Tools / Environment:
+Java Programming Environment, JDK 8, Eclipse IDE, Apache ActiveMQ 4.1.1, JMS
+
+
+
+
+
+
+
+h•%%jB $-Q•\•9•e6•Bo4•.'#J•'é ‹!*•f.voi•o•ld              Qm Hg°°u     #  l* # ’  " B•••  Ba•iem  
+B•m•}• Bmbm  D         
+
+Name: Abhishek Ghadge
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package pubsub;
+
+import pubsub.publisher.Publisher; import pubsub.publisher.PublisherImpl; import 
+pubsub.service.PubSubService; import pubsub.subscriber.Subscriber; import 
+pubsub.subscriber.SubscriberImpl;
+
+public class DriverClass (
+public static void main(String[] args) (
+
+//Instantiate publishers, subscribers and PubSubService Publisher javaPublisher = new 
+PublisherImpl(); Publisher pythonPublisher = new PublisherImpl();
+
+Subscriber javasubscriber — new SubscriberImpl(); Subscriber allLanguagesSubscriber = new 
+SubscriberImpl(); Subscriber pythonsubscriber = new Subscriberlmpl();
+
+PubSubService pubsubservice = new PubSubService();
+
+//Declare Messages and Publish Messages to PubSubService
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+
+Lab 6");
+
+
+
+
+
+
+
+language");
+Message javaMsgl = new Message("Java", "Congratualation.  You run successfully
+
+Message javaMsg2 = new Message("Java", "PUBSUB Concept"); Message javaMsg3 = new Message("Java", 
+"Eclips ");
+
+javaPublisher.publish(javaMsgl, pubsubservice); javaPublisher.publish(javaMsg2, pubsubservice); 
+javaPublisher.publish(javaMsg3, pubsubservice);
+
+Message pythonMsgl  new Message("Python", "Easy and Powerful programming Message pythonMsg2 = new 
+Message("Python", "Advanced Python message");
+pythonPublisher.publish(pythonMsgl, pubsubservice); pythonPublisher.publish(pythonMsg2, 
+pubsubservice);
+
+//Declare Subscribers
+javasubscriber.addSubscriber("Java",pubsubservice);       //Java subscriber only subscribes to Java 
+topics
+pythonsubscriber.addSubscriber("Python",pubsubservice); //Python subscriber only subscribes to 
+Python topics
+al1LanguagesSubscriber.addSubscriber("Java", pubsubservice); //all subscriber, subscribes to both 
+Java and Python
+al1LanguagesSubscriber.addSubscriber("Python", pubsubservice);
+
+//Trying unsubscribing a subscriber
+//pythonSubscriber.unSubscribe("Python", pubsubservice);
+
+//Broadcast message to all subscribers. After broadcast, messageQueue will be empty in 
+PubSubService
+pubSubService.broadcast();
+
+//Print messages of each subscriber to see which messages they got System.out.print1n("Messages of 
+Java Subscriber are: "); javaSubscriber.printMessages();
+
+System.out.println("\nMessages of Python Subscriber are: "); pythonSubscriber.printMessages();
+
+System.out.println("\nMessages of All Languages Subscriber are: "); 
+al1LanguagesSubscriber.printMessages();
+
+
+
+server
+
+
+services");
+//After broadcast the messagesQueue will be empty, so publishing new messages to
+
+System.out.println("mPublishing 2 more Java Messages..."); Message javaMsg4 = new Message("Java", 
+"Lab 6");
+Message javaMsg5 = new Message("Java", "Dynamic System and Publisher
+
+
+javaPublisher.publish(javaMsg4, pubsubservice); javaPublisher.publish(javaMsg5, pubsubservice);
+
+javaSubscriber.getMessagesForSubscriberOfTopic("Java", pubsubservice); 
+System.out.println("\nMessages of Java Subscriber now are: "); javaSubscriber.printMessages();
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+
+//class
+
+
+W UC’ tt‹ B ¿#• B•m*p• B••••T•• R   0   H• W • Ba•*w• B   Bwm•mmeOBsm•i••#•- ?  ’ ’ ’%
+
+
+
+
+
+
+
+
+
+›.B we ammm m
+
+Name: Abhishek Ghadge         PRN No: 71901401J      Roll no: B150088544
+
+
+
+
+
+
+
+
+//Publisher
+
+Seat No.: B150088558         PRN: 71901454K
+
+Name: Ipsita Jadhav            Seat No.: B150088558          PRN: 71901454K
+
+
+
+
+
+Related Theory:
+
+Large distributed systems are often overwhelmed with complications caused by heterogeneity and 
+interoperability. Heterogeneity issues may arise due to the use of different programming languages, 
+hardware platforms, operating systems, and data representations. Interoperability denotes the 
+ability of heterogeneous systems to communicate meaningfully and exchange data or services. With 
+the introduction of middleware, heterogeneity can be alleviated and interoperability can be 
+achieved.
+Middleware is a layer of software between the distributed application and the operating system and 
+consists of a set of standard interfaces that help the application use networked resources and 
+services.
+
+Enterprise Messaging System:
+
+EMS, or the messaging system, defines system standards for organizations so they can define their 
+enterprise application messaging process with a semantically precise messaging structure. EMS 
+encourages you to define a loosely coupled application architecture in order to define an 
+industry-accepted message structure; this is to ensure that published messages would be 
+persistently consumed by subscribers. Common formats, such as XML or JSON, are used to do this. EMS 
+recommends these messaging protocols: DDS, MSMQ, AMQP, or SOAP  web  services.  Systems  designed  
+with  EMS  are  termed  Message-Oriented Middleware (MOM). An asynchronous communication is used 
+while messaging in EMS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Java's implementation of an EMS in the Application Programming Interface (API) format is known as 
+JMS.
+JMS allows distributed Java applications to communicate with applications developed in any other 
+technology that understands messaging through asynchronous messages. JMS applications contain a 
+provider, clients, messages, and administrated objects.
+JMS providing a standard, portable way for Java programs to send/receive messages through a MOM 
+product. Any application written in JMS can be executed on any MOM
+
+Name: Ipsita Jadhav            Seat No.: B150088558          PRN: 71901454K
+
+
+
+
+that implements the JMS API standards. The JMS API is specified as a set of interfaces as part of 
+the Java API. Hence, all the products that intend to provide JMS behavior will have to deliver the 
+provider to implement JMS-defined interfaces. With programming patterns that allow a program to 
+interface, you should be able to construct a Java application in line with the JMS standards by 
+defining the messaging programs with client applications to exchange information through JMS 
+messaging
+
+
+
+Conclusion:
+This assignment includes study of Publish-Subscribe model of Communication which is implemented 
+using JMS and Apache ActiveMQ. The topic based filtering requires the messages to be broadcasted 
+into logical channels, the subscribers only receives messages from logic channels they are 
+subscribed.
+
+Name: Ipsita Jadhav            Seat No.: B150088558          PRN: 71901454K
+
+
+
+
+ASSIGNMENT NO. 7
+
+
+AIM/OBJECTIVE:
+To develop microservices framework based distributed application.
+
+Tools / Environment:
+Python 3 6.0 using Flask framework.
+
+Related Theory:
+1. Microservices:
+Traditional application design is often called “monolithic” because the whole thing is developed in 
+one piece. Even if the logic of the application is modular it's deployed as one group, like a Java 
+application as a JAR file for example. This monolith eventually becomes
+so difficult to manage as the larger applications require longer and longer deployment timeframes. 
+In contrast with the monolith type application, here's what an app developed with a microservices 
+focus might look like:
+
+
+
+
+
+
+UI
+h I icroserv ice
+
+
+
+
+
+
+
+
+
+
+A team designing a microservices architecture for their application will split all of the major 
+functions of an application into independent services. Each independent service is usually packaged 
+as an API so it can interact with the rest of the application elements.
+
+Microservices - also known as the microservice architecture - is an architectural style that 
+structures an application as a collection of services that are:
+•  Highly maintainable and testable
+•  Loosely coupled
+
+Name: Ipsita Jadhav           Seat No.: B150088558         PRN: 71901454K
+
+
+
+
+
+•  Independently deployable
+•  Organized around business capabilities.
+
+The microservice architecture enables the continuous delivery/deployment of large, complex 
+applications. It also enables an organization to evolve its technology stack.
+2. Web frameworks encapsulate what developers have learned over the past twenty years while 
+programming sites and applications for the web. Frameworks make it easier to reuse code for common 
+HTTP operations and to structure projects so other developers with knowledge of the framework can 
+quickly build and maintain the application.
+Common web framework functionality: Frameworks provide functionality in their code or through 
+extensions to perform common operations required to run web applications. These common operations 
+include:
+
+1. URL routing
+2. Input form handling and validation
+3. HTML, XML, JSON, and other output formats with a templating engine
+4. Database connection configuration and persistent data manipulation through an object- relational 
+mapper (ORM)
+5. Web security against Cross-site request forgery (CSRF), SQL Injection, Cross-site Scripting 
+(XSS) and other common malicious attacks
+6. Session storage and retrieval.
+
+3. Flask (source code) is a Python web framework built with a small core and easy-to-extend 
+philosophy. Flask is based on the Werkzeug WSGI toolkit and Jinja2 template engine.
+
+4. WSGI: Web Server Gateway Interface (WSGI) has been adopted as a standard for Python web 
+application development. WSGI is a specification for a universal interface between the web server 
+and the web applications.
+
+5. Werkzeug :It is a WSGI toolkit, which implements requests, response objects, and other utility 
+functions. This enables building a web framework on top of it. The Flask framework uses Werkzeug as 
+one of its bases.
+
+6. Virtual Environment:
+In Python, by default, every project on the system will use the same directories to store and 
+retrieve site packages (third party libraries). and system packages (packages that are part of the
+standard Python library). Consider the a scenario where there are two projects: ProjectA and 
+ProjectB, both of which have a dependency on the same library, ProjectC. The problem becomes 
+apparent when we start requiring different versions of ProjectC. Maybe ProjectA needs vl.0.0, while 
+ProjectB requires the newer v2.0.0, for example.
+
+Since projects are stored in site-packages directory according to just their name and can't 
+differentiate between versions, both projects, ProjectA and ProjectB, would be required to use the 
+same version which is unacceptable in many cases and hence the virtual environment. The
+
+Name: Ipsita Jadhav            Seat No.: B150088558          PRN: 71901454K
+
+
+
+
+
+
+main purpose of Python virtual environments is to create an isolated environment for Python 
+projects. This means that each project can have its own dependencies, regardless of what 
+dependencies every other project has. There are no limits to the number of environments you can 
+have since they're just directories containing a few scripts. Plus, they're easily created using 
+the virtualenv or pyenv command line tools.
+
+Designing the solution:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Here, we are attempting to develop an microservice based architecture for Movie ticket Booking web 
+application. The services are being implemented using python and JSON is used as for Data Store.
+
+Implementing the solution:
+1. Using Virtual Environments:  Install  virtualenv for  development  environment. vi rtualenv  is 
+a virtual Python environment builder. It helps a user to create multiple Python environments 
+side-by-side. Thereby, it can avoid compatibility issues between the different versions of the 
+libraries.
+
+The following command installs virtualenv: Sudo apt-get install virtualenv
+
+2. Flask Module:
+Importing flask module in the project is mandatory. An object of Flask class is our WSGI 
+application. Flask constructor takes the name of current module ( name ) as argument. The route() 
+function of the Flask class is a decorator, which tells the application which URL should call the 
+associated function.
+
+Name: Ipsita Jadhav           Seat No.: B150088558          PRN: 71901454K
+
+
+
+
+
+
+Route decorator:
+The route() decorator in Flask is used to bind URL to a function. For example —
+@app.route(’/hello ‘) def hello world():
+return ’hello world’
+Here, URL ‘/heIIo’ rule is bound to the hello world() function. As a result, if a user visits 
+http://localhost:5000/hello URL, the output of the hello world() function will be rendered in the 
+browser.
+
+3. Writing the subroutine for the four microservices: There are four microservices viz., user, 
+Showtimes, Bookings and Movies for which microservices are to be implemented.
+
+
+Writing the source code:
+
+Name: Ipsita Jadhav            Seat No.: B150088558          PRN: 71901454K
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Building and Executing the solution:
+
+1. To install the necessary files and create a virtual environment run: sudo ./setup.sh
+
+2. To start the 4 microservices run :
+./startup.sh
+
+Name: Ipsita Jadhav            Seat No.: B150088558          PRN: 71901454K
+
+
+
+
+
+
+3. To start the command line UI:
+python cmdline.py
+
+Running startup.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Running cmdline.py
+
+Name: Ipsita Jadhav            Seat No.: B150088558          PRN: 71901454K
+
+Name: Ipsita Jadhav            Seat No.: B150088558          PRN: 71901454K
+
+Name: Ipsita Jadhav            Seat No.: B150088558          PRN: 71901454K
+
+
+
+
+Conclusion:
+With microservices, modules within software can be independently deployable. In a microservices 
+architecture, each service runs a unique process and usually manages its own database. This not 
+only provides development teams with a more decentralized approach to building software, it also 
+allows each service to be deployed, rebuilt, redeployed and managed independently. Netflix, eBay, 
+Amazon, the UK Government Digital Service, Twitter, PayPal, The Guardian, and many other 
+large-scale websites and applications have all evolved from monolithic to microservices 
+architecture.
